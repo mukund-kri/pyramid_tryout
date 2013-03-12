@@ -1,4 +1,4 @@
-pyramid_tryout
+Pyramid Tryout
 ==============
 
 Evaluating Pyramid 1.4
