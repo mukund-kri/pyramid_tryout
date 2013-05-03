@@ -23,7 +23,9 @@ def main(global_config, **settings):
     
     config.add_route('tlist', '/')
     config.add_route('tadd', '/add')
+    config.add_route('tedit', '/edit/{id}')
     config.add_route('tdelete', '/delete/{id}')
+    
     
     config.scan()
     
