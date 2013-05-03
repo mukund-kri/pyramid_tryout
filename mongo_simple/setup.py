@@ -10,7 +10,8 @@ requires = [
     'pyramid',
     'pyramid_debugtoolbar',
     'waitress',
-    'pymongo==2.5'
+    'pymongo==2.5',
+    'deform',
     ]
 
 setup(name='mongo_simple',

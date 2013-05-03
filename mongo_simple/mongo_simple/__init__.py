@@ -9,7 +9,7 @@ def main(global_config, **settings):
     """
     config = Configurator(settings=settings)
     config.add_static_view('static', 'static', cache_max_age=3600)
-
+    
     db_url = urlparse(settings['mongo_uri'])
     config.registry.db = pymongo.Connection(
        host=db_url.hostname,
@@ -21,6 +21,12 @@ def main(global_config, **settings):
         
     config.add_request_method(get_db, 'db', reify=True)    
     
-    config.add_route('home', '/')
+    config.add_route('tlist', '/')
+    config.add_route('tadd', '/add')
+    config.add_route('tdelete', '/delete/{id}')
+    
     config.scan()
+    
+    config.add_static_view('deform_static', 'deform:static')
+    
     return config.make_wsgi_app()
