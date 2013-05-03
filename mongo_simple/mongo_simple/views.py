@@ -40,14 +40,17 @@ def task_delete(request):
 def task_edit(request):
     schema = TaskSchema()
     form = Form(schema, buttons=('submit',))
+    id = request.matchdict.get('id', None)
+    appstruct = request.db['tasks'].find_one({'_id': ObjectId(id)})
     
     if 'submit' in request.POST:
         controls = request.POST.items()        
         try:
             appstruct = form.validate(controls)
+            appstruct['_id'] = ObjectId(id)
             request.db['tasks'].save(appstruct)
-        except ValidationFaliure as e:
+        except ValidationFailure as e:
             return {'form': e.render()}
         else:
             return HTTPFound(route_url('tlist', request))
-    return {'form': form.render()}
+    return {'form': form.render(appstruct=appstruct)}
