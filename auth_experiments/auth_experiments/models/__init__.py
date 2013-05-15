@@ -7,6 +7,7 @@ from .user import User
 
 class RootFactory(object):
     __acl__ = [ (Allow, Everyone, 'view'),
+                (Allow, 'admin', 'admin'),
                 (Allow, 'group:editors', 'edit') ]
     def __init__(self, request):
         pass
