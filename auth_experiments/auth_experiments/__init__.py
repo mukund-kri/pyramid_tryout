@@ -1,5 +1,7 @@
-from pyramid.config import Configurator
+from urllib.parse import urlparse
+import pymongo
 
+from pyramid.config import Configurator
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 
@@ -23,7 +25,7 @@ def main(global_config, **settings):
     config.set_authorization_policy(authz_policy)
     
     # DB ----------------------------------------------------------------------
-    db_url = urlparse(settings['mongo_uri'])
+    db_url = urlparse(settings['mongo.url'])
     config.registry.db = pymongo.Connection(
        host=db_url.hostname,
     )
