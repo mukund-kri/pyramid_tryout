@@ -10,6 +10,8 @@ requires = [
     'pyramid',
     'pyramid_debugtoolbar',
     'waitress',
+    'deform==0.9.7',
+    'mongoengine==0.8.4'
     ]
 
 setup(name='pyramidme',
